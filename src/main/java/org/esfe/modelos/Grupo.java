@@ -3,6 +3,9 @@ package org.esfe.modelos;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "grupos")
 public class Grupo {
@@ -15,6 +18,9 @@ public class Grupo {
 
     @NotBlank(message = "La descripción es requerida")
     private String descripcion;
+
+    @ManyToMany(mappedBy = "grupos")
+    private Set<Docente> docentes = new HashSet<>();
 
     public Integer getId() {
         return id;
